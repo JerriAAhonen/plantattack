@@ -14,6 +14,8 @@ public class LevelController : MonoBehaviour
 	[SerializeField] private Vector2Int gridSize;
 	[SerializeField] private float cellSize;
 	[SerializeField] private GameObject platformPrefab;
+	[SerializeField] private PlayerController playerControllerPrefab;
+	[Space]
 	[SerializeField] private Material neutralMaterial;
 	[SerializeField] private Material player1Material;
 	[SerializeField] private Material player2Material;
@@ -37,6 +39,12 @@ public class LevelController : MonoBehaviour
 			gridObject.renderer.material = neutralMaterial;
 			return gridObject;
 		});
+
+		var pController = Instantiate(playerControllerPrefab);
+		pController.Init(this, 0);
+		var p1StartingTile = GetStartingTile(0);
+		grid.GetGridAlignedPosition(p1StartingTile, out var p1StartingPos);
+		pController.transform.position = p1StartingPos;
 	}
 
 	private void Update()
@@ -56,6 +64,17 @@ public class LevelController : MonoBehaviour
 		grid?.OnDrawGizmos_DrawDebugData();
 	}
 
+	public bool CanMoveTo(Vector3 nextPos)
+	{
+		if (grid.GetGridPosition(nextPos, out var gridPos))
+		{
+			grid.GetValue(gridPos, out var gridObject);
+			return true;
+		}
+		else
+			return false;
+	}
+
 	private void ClaimTile(int playerIndex)
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,26 +82,44 @@ public class LevelController : MonoBehaviour
 		if (inputPlane.Raycast(ray, out var enter))
 		{
 			var clickPos = ray.GetPoint(enter);
-			if (!grid.GetValue(clickPos, out var gridObject))
-				return;
+			ClaimTile(playerIndex, clickPos);
+		}
+	}
 
-			gridObject.renderer.material = playerIndex == 0 ? player1Material : player2Material;
-			var prevOwner = gridObject.owner;
-			var newOwner = playerIndex;
-			gridObject.owner = newOwner;
+	public void ClaimTile(int playerIndex, Vector3 worldPos)
+	{
+		if (!grid.GetValue(worldPos, out var gridObject))
+			return;
 
-			if (prevOwner == newOwner)
-				return;
+		gridObject.renderer.material = playerIndex == 0 ? player1Material : player2Material;
+		var prevOwner = gridObject.owner;
+		var newOwner = playerIndex;
+		gridObject.owner = newOwner;
 
-			if (prevOwner >= 0 && prevOwner != playerIndex)
-			{
-				scoreController.SubstractScore(prevOwner);
-				CoreUI.Instance.SetPlayerScore(prevOwner, scoreController.GetScore(prevOwner));
-			}
+		if (prevOwner == newOwner)
+			return;
+
+		if (prevOwner >= 0 && prevOwner != playerIndex)
+		{
+			scoreController.SubstractScore(prevOwner);
+			CoreUI.Instance.SetPlayerScore(prevOwner, scoreController.GetScore(prevOwner));
+		}
 
 			
-			scoreController.AddScore(newOwner);
-			CoreUI.Instance.SetPlayerScore(newOwner, scoreController.GetScore(newOwner));
-		}
+		scoreController.AddScore(newOwner);
+		CoreUI.Instance.SetPlayerScore(newOwner, scoreController.GetScore(newOwner));
+		
+	}
+
+	private Vector2Int GetStartingTile(int playerIndex)
+	{
+		return playerIndex switch
+		{
+			0 => new Vector2Int(0, 0),
+			1 => new Vector2Int(gridSize.x - 1, gridSize.y - 1),
+			2 => new Vector2Int(0, gridSize.y - 1),
+			_ => new Vector2Int(gridSize.x - 1, 0)
+		};
+		
 	}
 }

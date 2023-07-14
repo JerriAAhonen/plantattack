@@ -717,6 +717,8 @@ MonoBehaviour:
   cellSize: 1
   platformPrefab: {fileID: 2472592970771734761, guid: 7c3f8363303b1a2409ebb1e74437b37e,
     type: 3}
+  playerControllerPrefab: {fileID: 3712490105941385217, guid: 37da2c1bda2c6834da343864d28da283,
+    type: 3}
   neutralMaterial: {fileID: 2100000, guid: 9fd6f131b4dd717448923ac0a1f8ac77, type: 2}
   player1Material: {fileID: 2100000, guid: 3b7e62f27edffa94aa1d074f75c62b5b, type: 2}
   player2Material: {fileID: 2100000, guid: 56b6df2102da5f24ab09ce93372e7a3d, type: 2}
