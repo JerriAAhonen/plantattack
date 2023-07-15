@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private float travelDuration;
+	[SerializeField] private float travelDuration = 2f;
+	[SerializeField] private float rotationSpeed = 5f;
+	[Header("Animations")]
+	[SerializeField] private Animator animator;
+	[Header("Materials")]
 	[SerializeField] private PlayerMaterialsController materialsController;
 	[SerializeField] private List<PlayerMaterials> materials;
 
@@ -29,19 +33,24 @@ public class PlayerController : MonoBehaviour
 		this.levelController = levelController;
 		this.playerIndex = playerIndex;
 
+		// Starting position and rotation
 		transform.position = levelController.GetStartingPosition(playerIndex);
 		transform.eulerAngles = levelController.GetStartingRotation(playerIndex);
 
+		// Setup materials
 		materialsController.SetupMaterials(materials[playerIndex]);
 
+		// Initial movement variables
 		offset = transform.forward;
 		prevOffset = transform.forward;
 		prevPos = transform.position;
 		targetPos = transform.position + offset;
 		traveling = true;
 
+		// Set prev grid pos to something that doesn't exist
 		prevTileGridPos = Vector2Int.one * 1000;
 
+		// All done let's go!
 		isInitialised = true;
 	}
 
@@ -54,7 +63,9 @@ public class PlayerController : MonoBehaviour
 		UpdateInput();
 		UpdateNextPos();
 		UpdateMovement();
+		UpdateRotation();
 
+		// Check if we have crossed into a new tile
 		var gridPos = levelController.GetGridPos(transform.position);
 		if (gridPos.x != prevTileGridPos.x || gridPos.y != prevTileGridPos.y)
 		{
@@ -84,6 +95,8 @@ public class PlayerController : MonoBehaviour
 			targetPos = nextPos;
 			prevOffset = offset;
 			traveling = true;
+
+			animator.SetTrigger("Move");
 		}
 		else
 		{
@@ -109,16 +122,32 @@ public class PlayerController : MonoBehaviour
 				prevPos = targetPos;
 				elapsedMovementTime = 0;
 				traveling = false;
+
+				animator.SetTrigger("Idle");
 			}
 		}
+	}
+
+	private void UpdateRotation()
+	{
+		var movementDir = targetPos - prevPos;
+		if (movementDir.sqrMagnitude <= Mathf.Epsilon)
+			return;
+
+		transform.rotation = Quaternion.Slerp(
+			transform.rotation, 
+			Quaternion.LookRotation(movementDir.normalized, Vector3.up), 
+			rotationSpeed * Time.deltaTime);
 	}
 
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(targetPos, 0.3f);
+		Gizmos.DrawLine(transform.position, targetPos);
 
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(nextPos, 0.2f);
+		Gizmos.DrawLine(transform.position, nextPos);
 	}
 }

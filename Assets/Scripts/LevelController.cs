@@ -7,7 +7,7 @@ public class LevelController : MonoBehaviour
 	private class GridObject 
 	{
 		public GameObject platform;
-		public Renderer renderer;
+		public PlatformMaterialsController platformMaterialsController;
 		public int owner = -1;
 		public bool occupied;
 	}
@@ -17,9 +17,8 @@ public class LevelController : MonoBehaviour
 	[SerializeField] private GameObject platformPrefab;
 	[SerializeField] private PlayerController playerControllerPrefab;
 	[Space]
-	[SerializeField] private Material neutralMaterial;
-	[SerializeField] private Material player1Material;
-	[SerializeField] private Material player2Material;
+	[SerializeField] private PlatformMaterials neutralMaterial;
+	[SerializeField] private List<PlatformMaterials> playerPlatformMaterials;
 
 	private Plane inputPlane;
 	private Grid<GridObject> grid;
@@ -36,8 +35,8 @@ public class LevelController : MonoBehaviour
 			var gridObject = new GridObject();
 			gridObject.platform = Instantiate(platformPrefab, transform);
 			gridObject.platform.transform.position = worldPos;
-			gridObject.renderer = gridObject.platform.GetComponent<Renderer>();
-			gridObject.renderer.material = neutralMaterial;
+			gridObject.platformMaterialsController = gridObject.platform.GetComponent<PlatformMaterialsController>();
+			gridObject.platformMaterialsController.SetupMaterials(neutralMaterial);
 			return gridObject;
 		});
 	}
@@ -63,7 +62,7 @@ public class LevelController : MonoBehaviour
 		if (!grid.GetValue(gridPos, out var gridObject))
 			return;
 
-		gridObject.renderer.material = playerIndex == 0 ? player1Material : player2Material;
+		gridObject.platformMaterialsController.SetupMaterials(playerPlatformMaterials[playerIndex]);
 		var prevOwner = gridObject.owner;
 		var newOwner = playerIndex;
 		gridObject.owner = newOwner;

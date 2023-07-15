@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   travelDuration: 1
+  rotationSpeed: 5
+  animator: {fileID: 2140123867243502177}
   materialsController: {fileID: 5212372546355501797}
   materials:
   - {fileID: 11400000, guid: 2b9f593f62a9b664a8b23e255e6dc448, type: 2}
@@ -148,6 +150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 3d4405897d5334347b8632e632a75b7d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7bf45dce99e3b9d4ab326c205d3607bb, type: 2}
     - target: {fileID: 6507901977716847365, guid: 3d4405897d5334347b8632e632a75b7d,
         type: 3}
       propertyPath: m_Name
@@ -172,6 +179,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5212372546355501797}
   m_SourcePrefab: {fileID: 100100000, guid: 3d4405897d5334347b8632e632a75b7d, type: 3}
+--- !u!95 &2140123867243502177 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 3d4405897d5334347b8632e632a75b7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5537645200998066160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &2510863092289855146 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7926839288223873370, guid: 3d4405897d5334347b8632e632a75b7d,

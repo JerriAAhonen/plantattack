@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tile-Captured-Player2
+  m_Name: Platform-Captured-Player1-Primary
   m_Shader: {fileID: 4800000, guid: 849dc4ff793a3f943ad21a3b6ee26456, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -158,8 +158,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.66223764, b: 0.8396226, a: 1}
-    - _Color: {r: 0, g: 0.4403778, b: 0.5566037, a: 1}
+    - _BaseColor: {r: 0.12648769, g: 0.7830189, b: 0, a: 1}
+    - _Color: {r: 0.08074597, g: 0.509434, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}
