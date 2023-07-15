@@ -10,6 +10,7 @@ public class GameManager : PersistentSingleton<GameManager>
 	
 	private LevelController levelController;
 	private CoreUI ui;
+	private CameraController cameraController;
 
 	private List<PlayerController> players = new();
 
@@ -41,6 +42,7 @@ public class GameManager : PersistentSingleton<GameManager>
 
 		ui.InitPlayerScores(playerCount);
 		SpawnPlayers();
+
 	}
 
 	private void GetCoreEssentials()
@@ -48,6 +50,7 @@ public class GameManager : PersistentSingleton<GameManager>
 		var coreEssentials = FindObjectOfType<CoreEssentials>();
 		levelController = coreEssentials.LevelController;
 		ui = coreEssentials.CoreUI;
+		cameraController = coreEssentials.CameraController;
 	}
 
 	private void SpawnPlayers()
@@ -58,6 +61,7 @@ public class GameManager : PersistentSingleton<GameManager>
 			playerController.Init(levelController, i);
 
 			players.Add(playerController);
+			cameraController.AddPlayer(playerController.transform);
 		}
 	}
 }
