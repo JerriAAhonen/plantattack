@@ -44,6 +44,19 @@ public class LevelController : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		grid?.OnDrawGizmos_DrawDebugData();
+
+		if (Application.isPlaying)
+			return;
+
+		var bottomLeft = Vector3.zero - (new Vector3(gridSize.x, 0, gridSize.y) / 2f);
+		var topLeft = bottomLeft + cellSize * gridSize.y * Vector3.forward;
+		var topRight = topLeft + cellSize * gridSize.x * Vector3.right;
+		var bottomRight = bottomLeft + cellSize * gridSize.x * Vector3.right;
+
+		Gizmos.DrawLine(bottomLeft, topLeft);
+		Gizmos.DrawLine(topLeft, topRight);
+		Gizmos.DrawLine(topRight, bottomRight);
+		Gizmos.DrawLine(bottomRight, bottomLeft);
 	}
 
 	public bool CanMoveTo(Vector3 nextPos)
