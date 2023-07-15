@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Plant
       objectReference: {fileID: 0}
+    - target: {fileID: 1602564128540957456, guid: 3d4405897d5334347b8632e632a75b7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b6eccebf9e080c4f8bee15970a8a607, type: 2}
     - target: {fileID: 4424396828587804706, guid: 3d4405897d5334347b8632e632a75b7d,
         type: 3}
       propertyPath: m_Name
@@ -155,11 +160,21 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7bf45dce99e3b9d4ab326c205d3607bb, type: 2}
+    - target: {fileID: 6209297712205379352, guid: 3d4405897d5334347b8632e632a75b7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b6eccebf9e080c4f8bee15970a8a607, type: 2}
     - target: {fileID: 6507901977716847365, guid: 3d4405897d5334347b8632e632a75b7d,
         type: 3}
       propertyPath: m_Name
-      value: LeadRight
+      value: LeafRight
       objectReference: {fileID: 0}
+    - target: {fileID: 6684295394808222897, guid: 3d4405897d5334347b8632e632a75b7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b6eccebf9e080c4f8bee15970a8a607, type: 2}
     - target: {fileID: 7342855658915744305, guid: 3d4405897d5334347b8632e632a75b7d,
         type: 3}
       propertyPath: m_Name

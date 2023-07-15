@@ -15,6 +15,8 @@ Material:
   - _ADDITIONAL_LIGHTS_ENABLED
   - _ENVIRONMENT_LIGHTING_ENABLED
   - _FOG
+  - _FRESNEL
+  - _SPECULAR
   m_InvalidKeywords:
   - _ZWRITE_ON
   m_LightmapFlags: 4
@@ -109,9 +111,9 @@ Material:
     - _EnvironmentLightingEnabled: 1
     - _EnvironmentReflections: 1
     - _Fog: 1
-    - _Fresnel: 0
-    - _FresnelSmoothness: 0.1
-    - _FresnelThickness: 0.45
+    - _Fresnel: 1
+    - _FresnelSmoothness: 0.38
+    - _FresnelThickness: 0.389
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -120,23 +122,23 @@ Material:
     - _Parallax: 0.005
     - _PureShadowColor: 0
     - _QueueOffset: 0
-    - _Ramp0: 0
+    - _Ramp0: 0.28
     - _Ramp1: 0.5
-    - _RampSmoothness: 0.005
+    - _RampSmoothness: 0.067
     - _RampTriple: 0
     - _ReceiveShadows: 1
     - _ReflectionBlend: 0.5
     - _ReflectionProbes: 0
-    - _ReflectionSmoothness: 0.5
+    - _ReflectionSmoothness: 0.518
     - _Reflections: 0
     - _ShadowMask: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _Specular: 0
-    - _SpecularExponent: 200
+    - _Specular: 1
+    - _SpecularExponent: 237
     - _SpecularHighlights: 1
-    - _SpecularSmoothness: 0.025
-    - _SpecularThreshold: 0.8
+    - _SpecularSmoothness: 0.215
+    - _SpecularThreshold: 0.729
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -145,13 +147,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.7809465, b: 1, a: 1}
+    - _BaseColor: {r: 0.0117647005, g: 0.40040475, b: 0.65882355, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 1, g: 0.6427667, b: 0.3915094, a: 1}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 1, g: 0.6444799, b: 0.39157256, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8932209754924129152
 MonoBehaviour:
