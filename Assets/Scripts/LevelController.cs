@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
 		public GameObject platform;
 		public Renderer renderer;
 		public int owner = -1;
+		public bool occupied;
 	}
 
 	[SerializeField] private Vector2Int gridSize;
@@ -24,7 +25,7 @@ public class LevelController : MonoBehaviour
 	private Grid<GridObject> grid;
 	private ScoreController scoreController;
 
-	private void Start()
+	private void Awake()
 	{
 		scoreController = new ScoreController(2);
 		inputPlane = new Plane(Vector3.up, Vector3.zero);
@@ -39,24 +40,6 @@ public class LevelController : MonoBehaviour
 			gridObject.renderer.material = neutralMaterial;
 			return gridObject;
 		});
-
-		var pController = Instantiate(playerControllerPrefab);
-		pController.Init(this, 0);
-		var p1StartingTile = GetStartingTile(0);
-		grid.GetGridAlignedPosition(p1StartingTile, out var p1StartingPos);
-		pController.transform.position = p1StartingPos;
-	}
-
-	private void Update()
-	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			ClaimTile(0);
-		}
-		if (Input.GetMouseButtonDown(1))
-		{
-			ClaimTile(1);
-		}
 	}
 
 	private void OnDrawGizmos()
@@ -66,29 +49,18 @@ public class LevelController : MonoBehaviour
 
 	public bool CanMoveTo(Vector3 nextPos)
 	{
-		if (grid.GetGridPosition(nextPos, out var gridPos))
+		if (grid.GetGridPosition(nextPos, out var gridPos, true))
 		{
 			grid.GetValue(gridPos, out var gridObject);
-			return true;
+			return !gridObject.occupied;
 		}
 		else
 			return false;
 	}
 
-	private void ClaimTile(int playerIndex)
+	public void ClaimTile(int playerIndex, Vector2Int gridPos)
 	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-		if (inputPlane.Raycast(ray, out var enter))
-		{
-			var clickPos = ray.GetPoint(enter);
-			ClaimTile(playerIndex, clickPos);
-		}
-	}
-
-	public void ClaimTile(int playerIndex, Vector3 worldPos)
-	{
-		if (!grid.GetValue(worldPos, out var gridObject))
+		if (!grid.GetValue(gridPos, out var gridObject))
 			return;
 
 		gridObject.renderer.material = playerIndex == 0 ? player1Material : player2Material;
@@ -105,21 +77,66 @@ public class LevelController : MonoBehaviour
 			CoreUI.Instance.SetPlayerScore(prevOwner, scoreController.GetScore(prevOwner));
 		}
 
-			
 		scoreController.AddScore(newOwner);
 		CoreUI.Instance.SetPlayerScore(newOwner, scoreController.GetScore(newOwner));
-		
 	}
 
-	private Vector2Int GetStartingTile(int playerIndex)
+	public void SetTileOccupied(Vector2Int previousGridPos, Vector2Int newGridPos)
 	{
-		return playerIndex switch
+		if (grid.GetValue(previousGridPos, out var prevGridObject, true))
+			prevGridObject.occupied = false;
+
+		if (grid.GetValue(newGridPos, out var gridObject, true))
+			gridObject.occupied = true;
+	}
+
+	public void SetTileOccupied(Vector3 previousWorldPos, Vector3 newWorldPos)
+	{
+		grid.GetValue(previousWorldPos, out var prevGridObject);
+		prevGridObject.occupied = false;
+
+		grid.GetValue(newWorldPos, out var gridObject);
+		gridObject.occupied = true;
+	}
+
+	public Vector3 GetStartingPosition(int playerIndex)
+	{
+		var startingTile =  playerIndex switch
 		{
 			0 => new Vector2Int(0, 0),
 			1 => new Vector2Int(gridSize.x - 1, gridSize.y - 1),
 			2 => new Vector2Int(0, gridSize.y - 1),
 			_ => new Vector2Int(gridSize.x - 1, 0)
 		};
-		
+		grid.GetGridAlignedPosition(startingTile, out var startingPos);
+		return startingPos;
 	}
+
+	public Vector3 GetStartingRotation(int playerIndex)
+	{
+		return playerIndex switch
+		{
+			0 => Vector3.zero,
+			1 => new Vector3(0, 180, 0),
+			2 => new Vector3(0, 90, 0),
+			_ => new Vector3(0, 270, 0)
+		};
+	}
+
+	public Vector2Int GetGridPos(Vector3 worldPos)
+	{
+		grid.GetGridPosition(worldPos, out var gridPosition);
+		return gridPosition;
+	}
+
+	/*private void ClaimTile(int playerIndex)
+	{
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		if (inputPlane.Raycast(ray, out var enter))
+		{
+			var clickPos = ray.GetPoint(enter);
+			ClaimTile(playerIndex, clickPos);
+		}
+	}*/
 }
