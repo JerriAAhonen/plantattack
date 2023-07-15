@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d078e8fcd4c14d14da4df19fa61ef2a3, type: 3}
-  m_Name: Player2Materials
+  m_Name: Player2-Materials
   m_EditorClassIdentifier: 
   primaryColorMaterial: {fileID: 2100000, guid: 53c037ed653ac2e45906b89d9f7d699e,
     type: 2}
