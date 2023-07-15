@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private float travelDuration;
-	[SerializeField] Transform model;
+	[SerializeField] private PlayerMaterialsController materialsController;
+	[SerializeField] private List<PlayerMaterials> materials;
 
 	private Vector3 prevPos;				// Where the player was before moving
 	private Vector3 targetPos;				// Where the player is currently moving to
@@ -23,8 +24,6 @@ public class PlayerController : MonoBehaviour
 	private int playerIndex;
 	private bool isInitialised;
 
-	public Transform Model => model;
-
 	public void Init(LevelController levelController, int playerIndex) 
 	{
 		this.levelController = levelController;
@@ -32,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
 		transform.position = levelController.GetStartingPosition(playerIndex);
 		transform.eulerAngles = levelController.GetStartingRotation(playerIndex);
+
+		materialsController.SetupMaterials(materials[playerIndex]);
 
 		offset = transform.forward;
 		prevOffset = transform.forward;

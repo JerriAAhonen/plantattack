@@ -7,7 +7,6 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class GameManager : PersistentSingleton<GameManager>
 {
 	[SerializeField] private GameObject playerPrefab;
-	[SerializeField] private List<Material> playerMaterials;
 	
 	private LevelController levelController;
 	private CoreUI ui;
@@ -57,8 +56,6 @@ public class GameManager : PersistentSingleton<GameManager>
 		{
 			var playerController = Instantiate(playerPrefab).GetComponent<PlayerController>();
 			playerController.Init(levelController, i);
-
-			playerController.Model.GetComponent<Renderer>().material = playerMaterials[i];
 
 			players.Add(playerController);
 		}
