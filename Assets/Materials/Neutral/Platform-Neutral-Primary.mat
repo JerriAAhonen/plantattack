@@ -28,8 +28,6 @@ Material:
   - _ADDITIONAL_LIGHTS_ENABLED
   - _ENVIRONMENT_LIGHTING_ENABLED
   - _FOG
-  - _FRESNEL
-  - _SPECULAR
   m_InvalidKeywords:
   - _ZWRITE_ON
   m_LightmapFlags: 4
@@ -124,9 +122,9 @@ Material:
     - _EnvironmentLightingEnabled: 1
     - _EnvironmentReflections: 1
     - _Fog: 1
-    - _Fresnel: 1
+    - _Fresnel: 0
     - _FresnelSmoothness: 0.58
-    - _FresnelThickness: 0.156
+    - _FresnelThickness: 0.293
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -135,9 +133,9 @@ Material:
     - _Parallax: 0.005
     - _PureShadowColor: 0
     - _QueueOffset: 0
-    - _Ramp0: -0.228
+    - _Ramp0: -0.114
     - _Ramp1: 0.5
-    - _RampSmoothness: 0.8
+    - _RampSmoothness: 0.337
     - _RampTriple: 0
     - _ReceiveShadows: 1
     - _ReflectionBlend: 0.641
@@ -147,7 +145,7 @@ Material:
     - _ShadowMask: 0
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
-    - _Specular: 1
+    - _Specular: 0
     - _SpecularExponent: 256
     - _SpecularHighlights: 1
     - _SpecularSmoothness: 0.534
