@@ -150,10 +150,10 @@ Material:
     - _BaseColor: {r: 0.0117647005, g: 0.40040475, b: 0.65882355, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 1, g: 0.6427667, b: 0.3915094, a: 1}
+    - _FresnelColor: {r: 0.2783019, g: 0.5236792, b: 1, a: 1}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 1, g: 0.6444799, b: 0.39157256, a: 1}
+    - _SpecularColor: {r: 0.27889434, g: 0.5209957, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8932209754924129152
 MonoBehaviour:

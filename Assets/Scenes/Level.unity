@@ -1860,10 +1860,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1936009036}
     m_Modifications:
+    - target: {fileID: 116132426171800422, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 448621671713061579, guid: 842dbaa63b2d02e4096ee33e6008975a,
         type: 3}
       propertyPath: m_Name
       value: PalmTree (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186994649031778611, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004870596965932473, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477321475174782102, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374993857303663172, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4686051644843159260, guid: 842dbaa63b2d02e4096ee33e6008975a,
         type: 3}
@@ -1936,6 +1961,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6169897751509690887, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537162639052325429, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762907617858045354, guid: 842dbaa63b2d02e4096ee33e6008975a,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -2455,6 +2490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169897751509690887, guid: 842dbaa63b2d02e4096ee33e6008975a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
