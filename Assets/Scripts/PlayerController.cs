@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
 			levelController.SetTileOccupied(prevTileGridPos, gridPos);
 			levelController.ClaimTile(playerIndex, gridPos);
 			prevTileGridPos = gridPos;
+
+			LeanTween.delayedCall(travelDuration * 0.05f, () => levelController.OnLandOntile(transform.position));
 		}
 	}
 

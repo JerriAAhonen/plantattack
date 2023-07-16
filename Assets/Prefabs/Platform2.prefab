@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5994369562773885763}
   - component: {fileID: 7692583615629367918}
   - component: {fileID: 8249423708392776053}
+  - component: {fileID: 289669215405666531}
   m_Layer: 0
   m_Name: Platform2
   m_TagString: Untagged
@@ -73,6 +74,21 @@ MonoBehaviour:
   - {fileID: 7355631130650649772}
   - {fileID: 2694581050406062143}
   - {fileID: 2110786543998571624}
+--- !u!114 &289669215405666531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472592970771734761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2808546e5a3c74abedcb5225866dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 307485921219350115}
+  travelDistance: 0.1
+  travelduration: 0.8
 --- !u!1001 &274387170642094472
 PrefabInstance:
   m_ObjectHideFlags: 0
