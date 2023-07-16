@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour
 
 	[SerializeField] private Vector2Int gridSize;
 	[SerializeField] private float cellSize;
-	[SerializeField] private GameObject platformPrefab;
+	[SerializeField] private List<GameObject> platformPrefabs;
 	[SerializeField] private PlayerController playerControllerPrefab;
 	[Space]
 	[SerializeField] private PlatformMaterials neutralMaterial;
@@ -33,7 +33,7 @@ public class LevelController : MonoBehaviour
 		grid = new Grid<GridObject>(gridSize, cellSize, origin, true, false, (Vector2Int gridPos, Vector3 worldPos, int index) => 
 		{
 			var gridObject = new GridObject();
-			gridObject.platform = Instantiate(platformPrefab, transform);
+			gridObject.platform = Instantiate(platformPrefabs.Random(), transform);
 			gridObject.platform.transform.position = worldPos;
 			gridObject.platformMaterialsController = gridObject.platform.GetComponent<PlatformMaterialsController>();
 			gridObject.platformMaterialsController.SetupMaterials(neutralMaterial);

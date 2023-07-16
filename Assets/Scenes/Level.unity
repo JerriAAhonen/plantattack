@@ -473,7 +473,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 41.3
+  field of view: 57.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -564,10 +564,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 5.68, z: -6.79}
   movementSpeed: 3
+  minZ: -7.5
+  maxZ: 0.24
+  zAxisLimiter: 56.49
   zoomSpeed: 3
   minFov: 40
   maxFov: 86.2
-  zoomLimiter: 7.1
+  zoomLimiter: 12
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,8 +1626,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {x: 10, y: 10}
   cellSize: 1
-  platformPrefab: {fileID: 2472592970771734761, guid: 7c3f8363303b1a2409ebb1e74437b37e,
-    type: 3}
+  platformPrefabs:
+  - {fileID: 2472592970771734761, guid: 7c3f8363303b1a2409ebb1e74437b37e, type: 3}
+  - {fileID: 2472592970771734761, guid: 4c44388a988678e49a357514a488d4e9, type: 3}
+  - {fileID: 2472592970771734761, guid: d38106d79087a1942ba173cc8c98d443, type: 3}
   playerControllerPrefab: {fileID: 3712490105941385217, guid: 37da2c1bda2c6834da343864d28da283,
     type: 3}
   neutralMaterial: {fileID: 11400000, guid: 750983aaed41b19488c967c68491cfd7, type: 2}
