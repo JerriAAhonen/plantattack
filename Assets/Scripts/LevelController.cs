@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-	private class GridObject 
+	private class Platform 
 	{
-		public GameObject platform;
+		public GameObject platformGO;
 		public PlatformMaterialsController platformMaterialsController;
+		public PlatformAnimator animator;
 		public int owner = -1;
 		public bool occupied;
 	}
@@ -21,7 +22,7 @@ public class LevelController : MonoBehaviour
 	[SerializeField] private List<PlatformMaterials> playerPlatformMaterials;
 
 	private Plane inputPlane;
-	private Grid<GridObject> grid;
+	private Grid<Platform> grid;
 	private ScoreController scoreController;
 
 	private void Awake()
@@ -30,14 +31,15 @@ public class LevelController : MonoBehaviour
 		inputPlane = new Plane(Vector3.up, Vector3.zero);
 
 		var origin = Vector3.zero - (new Vector3(gridSize.x, 0, gridSize.y) / 2f);
-		grid = new Grid<GridObject>(gridSize, cellSize, origin, true, false, (Vector2Int gridPos, Vector3 worldPos, int index) => 
+		grid = new Grid<Platform>(gridSize, cellSize, origin, true, false, (Vector2Int gridPos, Vector3 worldPos, int index) => 
 		{
-			var gridObject = new GridObject();
-			gridObject.platform = Instantiate(platformPrefabs.Random(), transform);
-			gridObject.platform.transform.position = worldPos;
-			gridObject.platformMaterialsController = gridObject.platform.GetComponent<PlatformMaterialsController>();
-			gridObject.platformMaterialsController.SetupMaterials(neutralMaterial);
-			return gridObject;
+			var platform = new Platform();
+			platform.platformGO = Instantiate(platformPrefabs.Random(), transform);
+			platform.platformGO.transform.position = worldPos;
+			platform.platformMaterialsController = platform.platformGO.GetComponent<PlatformMaterialsController>();
+			platform.platformMaterialsController.SetupMaterials(neutralMaterial);
+			platform.animator = platform.platformGO.GetComponent<PlatformAnimator>();
+			return platform;
 		});
 	}
 
@@ -102,13 +104,10 @@ public class LevelController : MonoBehaviour
 			gridObject.occupied = true;
 	}
 
-	public void SetTileOccupied(Vector3 previousWorldPos, Vector3 newWorldPos)
+	public void OnLandOntile(Vector3 worldPos)
 	{
-		grid.GetValue(previousWorldPos, out var prevGridObject);
-		prevGridObject.occupied = false;
-
-		grid.GetValue(newWorldPos, out var gridObject);
-		gridObject.occupied = true;
+		grid.GetValue(worldPos, out var platform);
+		platform.animator.AnimateLandign();
 	}
 
 	public Vector3 GetStartingPosition(int playerIndex)

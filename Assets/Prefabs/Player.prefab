@@ -48,6 +48,7 @@ MonoBehaviour:
   travelDuration: 1
   rotationSpeed: 5
   animator: {fileID: 2140123867243502177}
+  timeToLand: 0.05
   materialsController: {fileID: 5212372546355501797}
   materials:
   - {fileID: 11400000, guid: 2b9f593f62a9b664a8b23e255e6dc448, type: 2}
