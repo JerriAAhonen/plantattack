@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
 	private LevelController levelController;
 	private int playerIndex;
-	private bool isInitialised;
+	private bool canStart;
 
 	public void Init(LevelController levelController, int playerIndex) 
 	{
@@ -49,14 +49,11 @@ public class PlayerController : MonoBehaviour
 
 		// Set prev grid pos to something that doesn't exist
 		prevTileGridPos = Vector2Int.one * 1000;
-
-		// All done let's go!
-		isInitialised = true;
 	}
 
 	private void Update()
 	{
-		if (!isInitialised)
+		if (!canStart)
 			return;
 
 		input = InputController.Instance.GetInput(playerIndex);
@@ -77,9 +74,19 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void StartMoving()
+	{
+		// All done let's go!
+		canStart = true;
+		animator.SetTrigger("Move");
+	}
+
 	private void UpdateInput()
 	{
-		if (input.y > 0) // Turn upwards
+		if (!canStart)
+			return;
+
+        if (input.y > 0) // Turn upwards
 			offset = Vector3.forward;
 		if (input.x < 0) // Turn left
 			offset = Vector3.left;

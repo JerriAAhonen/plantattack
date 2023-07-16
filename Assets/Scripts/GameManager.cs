@@ -11,6 +11,7 @@ public class GameManager : PersistentSingleton<GameManager>
 	private LevelController levelController;
 	private CoreUI ui;
 	private CameraController cameraController;
+	private CountdownController countdownController;
 
 	private List<PlayerController> players = new();
 
@@ -42,7 +43,12 @@ public class GameManager : PersistentSingleton<GameManager>
 
 		ui.InitPlayerScores(playerCount);
 		SpawnPlayers();
+		
+		var cdDuration = countdownController.StartCountdown();
+		yield return new WaitForSeconds(cdDuration);
 
+		foreach (PlayerController player in players)
+			player.StartMoving();
 	}
 
 	private void GetCoreEssentials()
@@ -51,6 +57,7 @@ public class GameManager : PersistentSingleton<GameManager>
 		levelController = coreEssentials.LevelController;
 		ui = coreEssentials.CoreUI;
 		cameraController = coreEssentials.CameraController;
+		countdownController = coreEssentials.CountdownController;
 	}
 
 	private void SpawnPlayers()
