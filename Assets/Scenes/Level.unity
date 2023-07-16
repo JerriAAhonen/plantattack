@@ -180,9 +180,9 @@ MonoBehaviour:
   startScale: 0.5
   endScale: 1
   images:
-  - {fileID: 1416524420}
-  - {fileID: 1745647947}
   - {fileID: 1767970585}
+  - {fileID: 1745647947}
+  - {fileID: 1416524420}
   - {fileID: 772739394}
 --- !u!1001 &88932195
 PrefabInstance:
